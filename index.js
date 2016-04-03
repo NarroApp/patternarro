@@ -41,10 +41,9 @@ app.get('/create/:name', function(req, res) {
     ctx.drawImage(img, 0, 0, 1400, 1400);
     stream = canvas.pngStream();
     console.info('stream start');
-    stream.on('data', function(chunk){
-        out.write(chunk);
-    });
-    stream.on('end', function(){
+    stream.pipe(out);
+    out.on('error', console.error.bind(console));
+    out.on('close', function(){
         console.info('stream end');
         s3Thing(namedFinal, req.params.name + '.png', 'narro-images',
         function(err, data, location) {
