@@ -34,20 +34,16 @@ app.get('/create/:name', function(req, res) {
     exec('convert ' + namedFile + ' ' + namedPng);
     imgPattern.src = fs.readFileSync(namedPng);
     img.src = fs.readFileSync(__dirname + '/public/narro.png');
-    console.info('draw start');
     canvasPattern = ctx.createPattern(imgPattern, 'repeat');
     ctx.fillStyle = canvasPattern;
     ctx.fillRect(0, 0, 1400, 1400);
     ctx.drawImage(img, 0, 0, 1400, 1400);
     stream = canvas.pngStream();
-    console.info('stream start');
     stream.pipe(out);
     out.on('error', console.error.bind(console));
     out.on('close', function(){
-        console.info('stream end');
         s3Thing(namedFinal, req.params.name + '.png', 'narro-images',
         function(err, data, location) {
-            console.info('upload end');
             res.status(201).jsonp({location: location});
         });
     });
