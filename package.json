@@ -1,0 +1,26 @@
+{
+  "name": "patternarro",
+  "version": "1.0.0",
+  "description": "An API to generate patterned images for Narro podcasts",
+  "main": "index.js",
+  "dependencies": {
+    "canvas": "^1.3.12",
+    "express": "^4.13.4",
+    "geopattern": "^1.2.3",
+    "s3": "^4.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NarroApp/patternarro.git"
+  },
+  "author": "andjosh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NarroApp/patternarro/issues"
+  },
+  "homepage": "https://github.com/NarroApp/patternarro#readme"
+}
