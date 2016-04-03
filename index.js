@@ -48,8 +48,7 @@ app.get('/create/:name', function(req, res) {
         s3Thing(namedFinal, req.params.name + '.png', 'narro-images',
         function(err, data, location) {
             console.info('upload end');
-            res.setStatus(201);
-            res.jsonp({location: location});
+            res.status(201).jsonp({location: location});
         });
     });
 });
